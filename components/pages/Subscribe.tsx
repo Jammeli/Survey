@@ -23,19 +23,19 @@ const Subscribe: React.FC = () => {
         .then((response) => {
           console.log("Réponse de l'API :", response.data);
           if (response.data.url) {
-            // Ajoute un délai avant la redirection (3 secondes)
+           
             let time = 0;
             const interval = setInterval(() => {
               time += 1;
-              setProgress((prev) => Math.min(prev + 20, 100)); // Augmente la barre de progression
+              setProgress((prev) => Math.min(prev + 20, 100)); 
               if (time === 3) {
                 clearInterval(interval);
-                window.location.href = response.data.url; // Redirection vers Stripe après 5 sec
+                window.location.href = response.data.url; 
               }
             }, 1000);
           } else {
             console.error(
-              "🔴 URL de paiement non reçue. Réponse :",
+              "URL de paiement non reçue. Réponse :",
               response.data
             );
             setLoading(false);
@@ -43,13 +43,13 @@ const Subscribe: React.FC = () => {
         })
         .catch((error) => {
           console.error(
-            "🔴 Erreur lors de la souscription :",
+            " Erreur lors de la souscription :",
             error.response?.data || error.message
           );
           setLoading(false);
         });
     } else {
-      console.error("🔴 Aucun plan sélectionné.");
+      console.error("Aucun plan sélectionné.");
       setLoading(false);
     }
   }, [plan]);
